@@ -10,16 +10,31 @@
     <header id="start-page-container">
       <h1>Coding Quiz Challenge</h1> 
       <button id="start-button">START QUIZ</button>
-      <button id="submit">YOUR SCORES</button>
+      <button id="highscores-button">YOUR HIGHSCORES</button>
     </header>
-    <div id="question-container">
+    <div id="question-container" class="hidden">
         <h1 id="question-title"></h1> 
         <button class="question-answer" id="choice-a"></button>
+        <button class="question-answer" id="choice-b"></button>
+        <button class="question-answer" id="choice-c"></button>
+        <button class="question-answer" id="choice-d"></button>
+        <h2 id="answer-container"></h2>
+    
+        <button id="next">Next Question</button>
+      
+
     </div>
     
+    
 
-        <div id="results"></div>
-      
+    <div id="results-container" class="hidden">
+      <h1 id="results-title">RESULTS</h1>
+      <p id="score"></p>
+    </div>
+
+    <div id="highscores-container" class="hidden">
+
+    </div>
         <div class="time"></div>
 
 
