@@ -5,6 +5,8 @@ const choiceA = "choice-a";
 const choiceB = "choice-b";
 const choiceC = "choice-c";
 const choiceD = "choice-d";
+const nickname = "nickname";
+const highscore = "highscore";
 
 //containers
 var timeEl = document.querySelector(".time");
@@ -30,61 +32,77 @@ var choiceDBtn = document.querySelector("#choice-d");
 
 //results
 var score = document.querySelector("#score");
+var inputInitials = document.querySelector("#first-name");
+var inputInitials = document.querySelector("#last-name");
+
+
+
+var highscores = [];
 
 
 var currentQuestion = 0;
-var secondsLeft = 30;
+var secondsLeft = 20;
 
 var quizQuestions = [
     { 
-        question: "test question 1",
+        question: "Q1: Which of the following is correct about features of JavaScript?",
         answer: { 
-            choiceA: "choice a",
-            choiceB: "choice b",
-            choiceC: "choice c",
-            choiceD: "choice d",
+            choiceA: "A - JavaScript is is complementary to and integrated with HTML.",
+            choiceB: "B - JavaScript is open and cross-platform.",
+            choiceC: "C - Both of the above.",
+            choiceD: "D - All of the above.",
         }, 
         correctAnswer: "c",
         userSelection: ""
 
     },
     { 
-        question: "test question 2", 
+        question: "Q2: Which built-in method sorts the elements of an array?", 
         answer: { 
-            choiceA: "choice a",
-            choiceB: "choice b",
-            choiceC: "choice c",
-            choiceD: "choice d"
+            choiceA: "A - changeOrder(order)",
+            choiceB: "B - order()",
+            choiceC: "C - sort",
+            choiceD: "D - None of the above"
         }, 
         correctAnswer: "c",
         userSelection: ""
 
     },
     {
-        question: "test question 3", 
+        question: "Q3: When is EDC (Electric Daisy Carnival) 2021?", 
         answer: { 
-            choiceA: "choice a",
-            choiceB: "choice b",
-            choiceC: "choice c",
-            choiceD: "choice d"
-        }, 
-        correctAnswer: "c",
-        userSelection: ""
-    },
-    {
-        question: "test question 4", 
-        answer: { 
-            choiceA: "choice a",
-            choiceB: "choice b",
-            choiceC: "choice c",
-            choiceD: "choice d"
+            choiceA: "A - Friday, Oct 22, 2021 - Sunday, Oct 24, 2021",
+            choiceB: "B - Wednesday, Dec 22, 2021 - Friday, Dec 24, 2021",
+            choiceC: "C - I don't listen to EDM",
+            choiceD: "D - All festivals are cancelled indefinitely",
         }, 
         correctAnswer: "a",
         userSelection: ""
     },
+    {
+        question: "Q4: Who is the artist for the song Shelter?", 
+        answer: { 
+            choiceA: "A - Porter Robinson",
+            choiceB: "B - Katy Perry",
+            choiceC: "C - Miley Cyrus",
+            choiceD: "D - David Bowie"
+        }, 
+        correctAnswer: "a",
+        userSelection: ""
+    },
+    {
+        question: "Q5: What does HTML stand for?", 
+        answer: { 
+            choiceA: "A - Hyper Trainer Marking Language",
+            choiceB: "B - Hyper Text Marketing Language",
+            choiceC: "C - Hyper Text Markup Language",
+            choiceD: "D - Hyper Trainer Marking Lever"
+        }, 
+        correctAnswer: "c",
+        userSelection: ""
+    }
 
 ];
-
 
 function start (){ //start button 
     startContainer.setAttribute("class", "hidden");
@@ -100,10 +118,10 @@ function startTimer(){ //start timer
 
         if(secondsLeft === 0) {
             clearInterval(timerInterval);
-    
+            gameOver();
         }
    
-    });
+    }, 1000);
 }
 
 function showQuestion(){
@@ -124,10 +142,7 @@ function selectAnswer(choice){
     } else { 
         showQuestion();
     }
-
 }
-
-
 
 function selectAnswerA(){
     selectAnswer("a");
@@ -145,8 +160,6 @@ function selectAnswerD(){
     selectAnswer("d");
 }
 
-
-
 function showResults(){ //show results
     resultsContainer.classList.remove("hidden");
     questionContainer.setAttribute("class", "hidden");
@@ -157,16 +170,28 @@ function showResults(){ //show results
         }
     }
     var percentage = correctAnswers / quizQuestions.length * 100;
-    score.textContent = `YOU GOT ${correctAnswers} out of ${quizQuestions.length} correct which is ${percentage}%`;
+    score.textContent = `YOU GOT ${correctAnswers} OUT OF ${quizQuestions.length} CORRECT WHICH IS ${percentage}%`;
+    var save = { 
+        nickname : "test",
+        highscore : percentage
+    };
+    highscores.push(save);
+    localStorage.setItem("highscores", JSON.stringify(highscores));
 
 }
 
-function showHighscore(){
+function showHighscore() {
     highscoresContainer.classList.remove("hidden");
     startContainer.setAttribute("class", "hidden");
-
+    var highscores = localStorage.getItem("highscores");
+    console.log(highscores); 
+    displayHighscore();
 }
 
+function displayhighScore() {
+    highscore.textContent = highscore;
+
+}
 
 startButton.addEventListener("click", start);
 choiceABtn.addEventListener("click", selectAnswerA);
@@ -174,8 +199,5 @@ choiceBBtn.addEventListener("click", selectAnswerB);
 choiceCBtn.addEventListener("click", selectAnswerC);
 choiceDBtn.addEventListener("click", selectAnswerD);
 highscoresButton.addEventListener("click", showHighscore);
-
-
-//quizQuestions[currentQuestion].userSelection =  
   
     
