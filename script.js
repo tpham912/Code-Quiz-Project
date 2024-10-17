@@ -35,10 +35,7 @@ var score = document.querySelector("#score");
 var inputInitials = document.querySelector("#first-name");
 var inputInitials = document.querySelector("#last-name");
 
-
-
 var highscores = [];
-
 
 var currentQuestion = 0;
 var secondsLeft = 20;
@@ -101,7 +98,6 @@ var quizQuestions = [
         correctAnswer: "c",
         userSelection: ""
     }
-
 ];
 
 function start (){ //start button 
