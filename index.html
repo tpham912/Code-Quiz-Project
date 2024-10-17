@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <title>Coding Quiz Challenge</title>
-    <!-- <meta charset="UTF-8" /> -->
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="./style.css" />
   </head>
@@ -10,36 +10,51 @@
     <header id="start-page-container">
       <h1>Coding Quiz Challenge</h1> 
       <h1>LET'S TEST YOUR TRIVIA KNOWLEDGE</h1>
-      <button id="start-button">START QUIZ</button>
-      <button id="highscores-button">YOUR HIGHSCORES</button>
+      <img src="assets/istockphoto-455589453-612x612.jpg" alt="brain pic"/>
     </header>
+
+    <div class="container">
+      <div class="center">
+        <button id="start-button">START QUIZ</button>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="center">
+        <button id="highscores-button">YOUR HIGHSCORES</button>
+      </div>
+    </div>
+
     <div id="question-container" class="hidden">
         <h1 id="question-title"></h1> 
         <button class="question-answer" id="choice-a"></button>
         <button class="question-answer" id="choice-b"></button>
         <button class="question-answer" id="choice-c"></button>
         <button class="question-answer" id="choice-d"></button>
-        <h2 id="answer-container"></h2>
-        
-        <button id="back-button">HOMEPAGE</button>
-
-      
-
+        <h2 id="answer-container"></h2>   
     </div>
-    
+
+    <div class="container">
+      <div class="center">
+        <button id="back-button">HOMEPAGE</button>
+      </div>
+    </div>
+
     <div id="results-container" class="hidden">
       <h1 id="results-title">RESULTS</h1>
       <p id="score"></p>
       <h3>ENTER INITIALS</h3>
-      
-
     </div>
 
 
     </div>
-        <div class="time"></div>
+        <div class="time">
+      </div>
 
 
+    </body>
+    <footer>
+
+    </footer>
     <script src="./script.js"></script>
-  </body>
 </html>

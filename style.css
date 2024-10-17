@@ -13,8 +13,29 @@ h1 {
     margin-top: 100px;
 }
 
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 .time {
     top: 0;
     right:0;
     position:absolute;
 }
+
+.container {
+    margin: 0;
+    position: relative;
+    height: 90px;
+}
+
+.center {
+    width: 100px;
+    height: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* transform: translate(-50%, -50%); */
+}
+
