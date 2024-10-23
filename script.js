@@ -10,6 +10,9 @@ const highscore = "highscore";
 const startQuiz = document.querySelector("#start-quiz");
 const highscore1 = document.querySelector("#highscore");
 
+// footer
+const footer = document.querySelector(".footer");
+
 
 //containers
 var timeEl = document.querySelector(".time");
@@ -108,6 +111,7 @@ function start (){ //start button
     questionContainer.classList.remove("hidden");
     startQuiz.setAttribute("class", "hidden");
     highscore1.setAttribute("class", "hidden");
+    footer.setAttribute("class", "hidden");
     startTimer();
     showQuestion();
 }
@@ -192,6 +196,10 @@ function showHighscore() {
     var highscores = localStorage.getItem("highscores");
     console.log(highscores); 
     displayhighScore();
+}
+
+function goHome() {
+    
 }
 
 
