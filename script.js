@@ -7,6 +7,9 @@ const choiceC = "choice-c";
 const choiceD = "choice-d";
 const nickname = "nickname";
 const highscore = "highscore";
+const startQuiz = document.querySelector("#start-quiz");
+const highscore1 = document.querySelector("#highscore");
+
 
 //containers
 var timeEl = document.querySelector(".time");
@@ -103,6 +106,8 @@ var quizQuestions = [
 function start (){ //start button 
     startContainer.setAttribute("class", "hidden");
     questionContainer.classList.remove("hidden");
+    startQuiz.setAttribute("class", "hidden");
+    highscore1.setAttribute("class", "hidden");
     startTimer();
     showQuestion();
 }
@@ -176,18 +181,19 @@ function showResults(){ //show results
 
 }
 
+function displayhighScore() {
+    highscore.textContent = highscore;
+
+}
+
 function showHighscore() {
     highscoresContainer.classList.remove("hidden");
     startContainer.setAttribute("class", "hidden");
     var highscores = localStorage.getItem("highscores");
     console.log(highscores); 
-    displayHighscore();
+    displayhighScore();
 }
 
-function displayhighScore() {
-    highscore.textContent = highscore;
-
-}
 
 startButton.addEventListener("click", start);
 choiceABtn.addEventListener("click", selectAnswerA);
