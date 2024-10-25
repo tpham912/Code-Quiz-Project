@@ -49,49 +49,49 @@ var secondsLeft = 20;
 
 var quizQuestions = [
     { 
-        question: "Q1: Which of the following is correct about features of JavaScript?",
+        question: "Q1: What Hawaiian dish resembles a bowl of deconstructed sushi?",
         answer: { 
-            choiceA: "A - JavaScript is is complementary to and integrated with HTML.",
-            choiceB: "B - JavaScript is open and cross-platform.",
-            choiceC: "C - Both of the above.",
+            choiceA: "A - Poke.",
+            choiceB: "B - Chirashi.",
+            choiceC: "C - Spam Musubi.",
             choiceD: "D - All of the above.",
         }, 
-        correctAnswer: "c",
+        correctAnswer: "a",
         userSelection: ""
 
     },
     { 
-        question: "Q2: Which built-in method sorts the elements of an array?", 
+        question: "Q2: The Arrector Pili muscles are responsible for what phenomenon??", 
         answer: { 
-            choiceA: "A - changeOrder(order)",
-            choiceB: "B - order()",
-            choiceC: "C - sort",
+            choiceA: "A - Cardiac arrest",
+            choiceB: "B - Goose bumps.",
+            choiceC: "C - Sweating",
             choiceD: "D - None of the above"
         }, 
-        correctAnswer: "c",
+        correctAnswer: "b",
         userSelection: ""
 
     },
     {
-        question: "Q3: When is EDC (Electric Daisy Carnival) 2021?", 
+        question: "Q3: What did the “Itsy Bitsy Spider” climb up?", 
         answer: { 
-            choiceA: "A - Friday, Oct 22, 2021 - Sunday, Oct 24, 2021",
-            choiceB: "B - Wednesday, Dec 22, 2021 - Friday, Dec 24, 2021",
-            choiceC: "C - I don't listen to EDM",
-            choiceD: "D - All festivals are cancelled indefinitely",
+            choiceA: "A - The watersprout.",
+            choiceB: "B - The sewage.",
+            choiceC: "C - The mountain.",
+            choiceD: "D - The fire escape.",
         }, 
         correctAnswer: "a",
         userSelection: ""
     },
     {
-        question: "Q4: Who is the artist for the song Shelter?", 
+        question: "Q4: What classic video game requires you to eat all the dots throughout a maze?", 
         answer: { 
-            choiceA: "A - Porter Robinson",
-            choiceB: "B - Katy Perry",
-            choiceC: "C - Miley Cyrus",
-            choiceD: "D - David Bowie"
+            choiceA: "A - Bomber man.",
+            choiceB: "B - Pac-Man.",
+            choiceC: "C - Mario.",
+            choiceD: "D - There's no such game."
         }, 
-        correctAnswer: "a",
+        correctAnswer: "b",
         userSelection: ""
     },
     {
