@@ -28,6 +28,7 @@ var highscoresContainer = document.querySelector("#highscores-container");
 var highscoresButton = document.querySelector("#highscores-button");
 var startButton = document.querySelector("#start-button");
 var nextButton = document.querySelector("#next");
+var homepage = document.querySelector("#back-button");
 
 //question & answer choices
 var questionTitle = document.querySelector("#question-title");
@@ -199,15 +200,15 @@ function showHighscore() {
 }
 
 function goHome() {
-    
+    window.location.href = "file:///Users/tinapham/Desktop/bootcamp%20project/Code-Quiz-Project/index.html";
 }
-
 
 startButton.addEventListener("click", start);
 choiceABtn.addEventListener("click", selectAnswerA);
 choiceBBtn.addEventListener("click", selectAnswerB);
 choiceCBtn.addEventListener("click", selectAnswerC);
 choiceDBtn.addEventListener("click", selectAnswerD);
+homepage.addEventListener("click", goHome);
 highscoresButton.addEventListener("click", showHighscore);
   
     
