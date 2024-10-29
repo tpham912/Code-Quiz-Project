@@ -10,10 +10,6 @@ const highscore = "highscore";
 const startQuiz = document.querySelector("#start-quiz");
 const highscore1 = document.querySelector("#highscore");
 
-// footer
-const footer = document.querySelector(".footer");
-
-
 //containers
 var timeEl = document.querySelector(".time");
 var questionAnswer = document.querySelector(".question-answer");
@@ -23,12 +19,11 @@ var resultsContainer = document.querySelector("#results-container");
 var answerContainer = document.querySelector("#answer-container");
 var highscoresContainer = document.querySelector("#highscores-container");
 
-
 //buttons
 var highscoresButton = document.querySelector("#highscores-button");
 var startButton = document.querySelector("#start-button");
-var nextButton = document.querySelector("#next");
 var homepage = document.querySelector("#back-button");
+var saveButton = document.querySelector("#save-button");
 
 //question & answer choices
 var questionTitle = document.querySelector("#question-title");
@@ -39,10 +34,13 @@ var choiceDBtn = document.querySelector("#choice-d");
 
 //results
 var score = document.querySelector("#score");
-var inputInitials = document.querySelector("#first-name");
-var inputInitials = document.querySelector("#last-name");
-
+var usernameInput = document.querySelector(".user-name");
+var displayName = document.querySelector("#display-name");
 var highscores = [];
+let usernames = [];
+
+// footer
+const footer = document.querySelector(".footer");
 
 var currentQuestion = 0;
 var secondsLeft = 20;
@@ -51,10 +49,10 @@ var quizQuestions = [
     { 
         question: "Q1: What Hawaiian dish resembles a bowl of deconstructed sushi?",
         answer: { 
-            choiceA: "A - Poke.",
-            choiceB: "B - Chirashi.",
-            choiceC: "C - Spam Musubi.",
-            choiceD: "D - All of the above.",
+            choiceA: "A - Poke",
+            choiceB: "B - Chirashi",
+            choiceC: "C - Spam Musubi",
+            choiceD: "D - All of the above",
         }, 
         correctAnswer: "a",
         userSelection: ""
@@ -64,7 +62,7 @@ var quizQuestions = [
         question: "Q2: The Arrector Pili muscles are responsible for what phenomenon??", 
         answer: { 
             choiceA: "A - Cardiac arrest",
-            choiceB: "B - Goose bumps.",
+            choiceB: "B - Goose bumps",
             choiceC: "C - Sweating",
             choiceD: "D - None of the above"
         }, 
@@ -75,10 +73,10 @@ var quizQuestions = [
     {
         question: "Q3: What did the “Itsy Bitsy Spider” climb up?", 
         answer: { 
-            choiceA: "A - The watersprout.",
-            choiceB: "B - The sewage.",
-            choiceC: "C - The mountain.",
-            choiceD: "D - The fire escape.",
+            choiceA: "A - The watersprout",
+            choiceB: "B - The sewage",
+            choiceC: "C - The mountain",
+            choiceD: "D - The fire escape",
         }, 
         correctAnswer: "a",
         userSelection: ""
@@ -86,10 +84,10 @@ var quizQuestions = [
     {
         question: "Q4: What classic video game requires you to eat all the dots throughout a maze?", 
         answer: { 
-            choiceA: "A - Bomber man.",
-            choiceB: "B - Pac-Man.",
-            choiceC: "C - Mario.",
-            choiceD: "D - There's no such game."
+            choiceA: "A - Bomber man",
+            choiceB: "B - Pac-Man",
+            choiceC: "C - Mario",
+            choiceD: "D - There's no such game"
         }, 
         correctAnswer: "b",
         userSelection: ""
@@ -183,12 +181,21 @@ function showResults(){ //show results
     };
     highscores.push(save);
     localStorage.setItem("highscores", JSON.stringify(highscores));
-
 }
 
-function displayhighScore() {
-    highscore.textContent = highscore;
+function saveUsername() {
+    let username = usernameInput.value;
 
+    if (username) {
+        localStorage.setItem("username", username);
+        displayName.textContent = `Saved username ${username}`
+    } else {
+        displayName.textContent = `No Name Entered!`;
+    }
+}
+
+function displayhighScore(highscore) {
+    highscore.textContent = highscore;
 }
 
 function showHighscore() {
@@ -210,5 +217,6 @@ choiceCBtn.addEventListener("click", selectAnswerC);
 choiceDBtn.addEventListener("click", selectAnswerD);
 homepage.addEventListener("click", goHome);
 highscoresButton.addEventListener("click", showHighscore);
+saveButton.addEventListener("click", saveUsername);
   
     
