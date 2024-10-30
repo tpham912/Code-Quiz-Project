@@ -48,6 +48,14 @@ img {
     border-radius: 12px;
 }
 
+#save-button {
+    border-radius: 12px;
+    margin: 1.5rem;
+}
+
+input {
+    border-radius: 20px;
+}
 
 footer {
     display: flex;

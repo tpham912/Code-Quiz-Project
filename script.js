@@ -37,7 +37,6 @@ var score = document.querySelector("#score");
 var usernameInput = document.querySelector(".user-name");
 var displayName = document.querySelector("#display-name");
 var highscores = [];
-let usernames = [];
 
 // footer
 const footer = document.querySelector(".footer");
@@ -130,7 +129,7 @@ function startTimer(){ //start timer
 
 function showQuestion(){
     var question = quizQuestions[currentQuestion];
-    questionTitle.innerText = question.question;
+    questionTitle.textContent = question.question;
     console.log(question);
     choiceABtn.textContent = question.answer.choiceA;
     choiceBBtn.textContent = question.answer.choiceB;
@@ -164,7 +163,7 @@ function selectAnswerD(){
     selectAnswer("d");
 }
 
-function showResults(){ //show results
+function showResults() { //show results
     resultsContainer.classList.remove("hidden");
     questionContainer.setAttribute("class", "hidden");
     var correctAnswers = 0;
@@ -174,25 +173,29 @@ function showResults(){ //show results
         }
     }
     var percentage = correctAnswers / quizQuestions.length * 100;
-    score.textContent = `YOU GOT ${correctAnswers} OUT OF ${quizQuestions.length} CORRECT WHICH IS ${percentage}%`;
-    var save = { 
-        nickname : "test",
-        highscore : percentage
-    };
-    highscores.push(save);
-    localStorage.setItem("highscores", JSON.stringify(highscores));
-}
+    
+    score.textContent = `YOU GOT ${correctAnswers} OUT OF ${quizQuestions.length} CORRECT`;
 
-function saveUsername() {
-    let username = usernameInput.value;
+    let username = usernameInput.value; 
 
-    if (username) {
-        localStorage.setItem("username", username);
-        displayName.textContent = `Saved username ${username}`
+    var userRecord = {
+        username: username,
+        highscore: percentage
+    }
+
+    highscores.push(userRecord);
+ 
+    localStorage.setItem("userRecord", JSON.stringify(userRecord));
+    JSON.parse(localStorage.getItem("userRecord"));
+    
+    if (userRecord.username == "") {
+        displayName.setAttribute("class", "hidden");
     } else {
-        displayName.textContent = `No Name Entered!`;
+        displayName.classList.remove("hidden");
+        displayName.textContent = `${userRecord.username} got ${userRecord.highscore}%`;
     }
 }
+
 
 function displayhighScore(highscore) {
     highscore.textContent = highscore;
@@ -217,6 +220,6 @@ choiceCBtn.addEventListener("click", selectAnswerC);
 choiceDBtn.addEventListener("click", selectAnswerD);
 homepage.addEventListener("click", goHome);
 highscoresButton.addEventListener("click", showHighscore);
-saveButton.addEventListener("click", saveUsername);
+saveButton.addEventListener("click", showResults);
   
     
