@@ -8,7 +8,7 @@
     display: none;
 }
 
-h1 { 
+h1, h2, h3 { 
     text-align: center;
     margin-top: 100px;
 }
@@ -44,7 +44,7 @@ img {
     border-radius: 12px;
 }
 
-#start-button, #highscores-button, #back-button {
+#start-button, #highscore-button, #back-button, #back-homepage, #scoreboard{
     border-radius: 12px;
 }
 
@@ -55,6 +55,30 @@ img {
 
 input {
     border-radius: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+.highscore-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+p {
+    margin-top: 2em;
+}
+
+.enterbox {
+    display: flex;
+    justify-content: center; /* Centers content horizontally */
+    align-items: center;    /* Centers content vertically if container has a defined height */
+    margin-top: 20px; 
+}
+
+.center {
+    display: grid;
 }
 
 footer {

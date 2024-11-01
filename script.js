@@ -9,6 +9,8 @@ const nickname = "nickname";
 const highscore = "highscore";
 const startQuiz = document.querySelector("#start-quiz");
 const highscore1 = document.querySelector("#highscore");
+const message = document.querySelector("#message");
+const scoreboard = document.querySelector("#scoreboard");
 
 //containers
 var timeEl = document.querySelector(".time");
@@ -20,10 +22,11 @@ var answerContainer = document.querySelector("#answer-container");
 var highscoresContainer = document.querySelector("#highscores-container");
 
 //buttons
-var highscoresButton = document.querySelector("#highscores-button");
+var highscoreButton = document.querySelector("#highscore-button");
 var startButton = document.querySelector("#start-button");
 var homepage = document.querySelector("#back-button");
 var saveButton = document.querySelector("#save-button");
+var backHome = document.querySelector("#back-homepage");
 
 //question & answer choices
 var questionTitle = document.querySelector("#question-title");
@@ -33,6 +36,7 @@ var choiceCBtn = document.querySelector("#choice-c");
 var choiceDBtn = document.querySelector("#choice-d");
 
 //results
+let percentage;
 var score = document.querySelector("#score");
 var usernameInput = document.querySelector(".user-name");
 var displayName = document.querySelector("#display-name");
@@ -106,6 +110,7 @@ var quizQuestions = [
 
 function start (){ //start button 
     startContainer.setAttribute("class", "hidden");
+    scoreboard.setAttribute("class", "hidden");
     questionContainer.classList.remove("hidden");
     startQuiz.setAttribute("class", "hidden");
     highscore1.setAttribute("class", "hidden");
@@ -172,21 +177,21 @@ function showResults() { //show results
             correctAnswers++;
         }
     }
-    var percentage = correctAnswers / quizQuestions.length * 100;
+    percentage = correctAnswers / quizQuestions.length * 100;
     
     score.textContent = `YOU GOT ${correctAnswers} OUT OF ${quizQuestions.length} CORRECT`;
 
+}
+
+function enterUserRecord() {
     let username = usernameInput.value; 
 
     var userRecord = {
         username: username,
         highscore: percentage
     }
-
-    highscores.push(userRecord);
  
     localStorage.setItem("userRecord", JSON.stringify(userRecord));
-    JSON.parse(localStorage.getItem("userRecord"));
     
     if (userRecord.username == "") {
         displayName.setAttribute("class", "hidden");
@@ -194,24 +199,38 @@ function showResults() { //show results
         displayName.classList.remove("hidden");
         displayName.textContent = `${userRecord.username} got ${userRecord.highscore}%`;
     }
+
+}
+
+var scoreboardList = [];
+
+function scoreBoard() {
+    // 1. Need to pull from userRecord localStorage by JSON.Parse using forEach 
+    // 2. Save it to variable 
+    // 3. Push to scoreboard array 
+
 }
 
 
-function displayhighScore(highscore) {
-    highscore.textContent = highscore;
-}
-
-function showHighscore() {
-    highscoresContainer.classList.remove("hidden");
+// Highscore board
+function showHighscores() {
     startContainer.setAttribute("class", "hidden");
-    var highscores = localStorage.getItem("highscores");
-    console.log(highscores); 
-    displayhighScore();
+    footer.setAttribute("class", "hidden");
+    startButton.style.display = "none";
+    homepage.style.display = "none";
+    message.classList.remove("hidden");
+    backHome.classList.remove("hidden");
+    scoreboard.setAttribute("class", "hidden");
+    var record = JSON.parse(localStorage.getItem("userRecord"));
+    message.textContent = `The latest player: ${record.username} got ${record.highscore}%`;
 }
 
 function goHome() {
     window.location.href = "file:///Users/tinapham/Desktop/bootcamp%20project/Code-Quiz-Project/index.html";
 }
+
+
+
 
 startButton.addEventListener("click", start);
 choiceABtn.addEventListener("click", selectAnswerA);
@@ -219,7 +238,9 @@ choiceBBtn.addEventListener("click", selectAnswerB);
 choiceCBtn.addEventListener("click", selectAnswerC);
 choiceDBtn.addEventListener("click", selectAnswerD);
 homepage.addEventListener("click", goHome);
-highscoresButton.addEventListener("click", showHighscore);
-saveButton.addEventListener("click", showResults);
-  
+backHome.addEventListener("click", goHome);
+highscoreButton.addEventListener("click", showHighscores);
+scoreboard.addEventListener("click", scoreBoard)
+saveButton.addEventListener("click", enterUserRecord);
+
     

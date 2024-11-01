@@ -19,11 +19,22 @@
       </div>
     </div>
 
-    <div class="container" id="highscore">
+    <!-- Highscore -->
+      <div class="container" id="highscore">
+        <div class="center">
+          <button id="highscore-button">YOUR HIGHSCORE</button>
+            <p id="message" class="hidden"></p>
+        </div>
+      </div>
+   
+
+    <div class="container">
       <div class="center">
-        <button id="highscores-button">YOUR HIGHSCORES</button>
+        <button id="scoreboard">SCOREBOARD</button>
+
       </div>
     </div>
+
 
     <div id="question-container" class="hidden">
         <h1 id="question-title"></h1> 
@@ -42,13 +53,21 @@
       </div>
     </div>
 
+    <div class="container">
+      <div class="center">
+        <button id="back-homepage" class="hidden">BACK TO HOMEPAGE</button>
+      </div>
+    </div>
+
     <div id="results-container" class="hidden">
       <h1 id="results-title">RESULTS</h1>
-        <p id="score"></p>
+      <h2 id="score"></h2>
          <h3>ENTER YOUR NAME</h3>
-           <input class="user-name" type="text"><span><button id="save-button">Save</button> </span>
-
-          <h3 id="display-name"></h3>
+         <div class="enterbox">
+           <input class="user-name" type="text">
+            <button id="save-button">Save</button>
+         </div>
+          <h1 id="display-name"></h1>
     </div>
 
 
