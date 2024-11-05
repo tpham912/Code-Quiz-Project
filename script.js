@@ -27,6 +27,7 @@ var startButton = document.querySelector("#start-button");
 var homepage = document.querySelector("#back-button");
 var saveButton = document.querySelector("#save-button");
 var backHome = document.querySelector("#back-homepage");
+var add = document.querySelector("#add-player");
 
 //question & answer choices
 var questionTitle = document.querySelector("#question-title");
@@ -199,19 +200,35 @@ function enterUserRecord() {
         displayName.classList.remove("hidden");
         displayName.textContent = `${userRecord.username} got ${userRecord.highscore}%`;
     }
-
 }
 
-var scoreboardList = [];
+var scoreBoardList = [];
 
-function scoreBoard() {
-    // 1. Need to pull from userRecord localStorage by JSON.Parse using forEach 
-    // 2. Save it to variable 
-    // 3. Push to scoreboard array 
+function saveAllPlayers() {
+    // Retrieve the item "allPlayers" from localStorage
+    let storedPlayers = localStorage.getItem("allPlayers");
 
+    // Check if storedPlayers is not null (meaning there is existing data)
+    if (storedPlayers !== null) {
+        // If there is data, parse it from JSON format into a JavaScript array
+        scoreBoardList = JSON.parse(storedPlayers);
+    } else {
+        // If there is no data, initialize scoreBoardList as an empty array
+        scoreBoardList = [];
+    }
+
+    // Retrieve the latest player record from localStorage
+    let addPlayer = JSON.parse(localStorage.getItem("userRecord"));
+
+    // Add the new player record to the list
+    if (addPlayer) {  // Check to ensure addPlayer is not null
+        scoreBoardList.push(addPlayer);
+    }
+
+    // Save the updated list back to localStorage
+    localStorage.setItem("allPlayers", JSON.stringify(scoreBoardList));
 }
-
-
+ 
 // Highscore board
 function showHighscores() {
     startContainer.setAttribute("class", "hidden");
@@ -229,9 +246,6 @@ function goHome() {
     window.location.href = "file:///Users/tinapham/Desktop/bootcamp%20project/Code-Quiz-Project/index.html";
 }
 
-
-
-
 startButton.addEventListener("click", start);
 choiceABtn.addEventListener("click", selectAnswerA);
 choiceBBtn.addEventListener("click", selectAnswerB);
@@ -240,7 +254,8 @@ choiceDBtn.addEventListener("click", selectAnswerD);
 homepage.addEventListener("click", goHome);
 backHome.addEventListener("click", goHome);
 highscoreButton.addEventListener("click", showHighscores);
-scoreboard.addEventListener("click", scoreBoard)
+scoreboard.addEventListener("click", displayPlayers)
 saveButton.addEventListener("click", enterUserRecord);
+saveButton.addEventListener("click", saveAllPlayers);
 
     
