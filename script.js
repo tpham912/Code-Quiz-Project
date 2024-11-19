@@ -10,7 +10,6 @@ const highscore = "highscore";
 const startQuiz = document.querySelector("#start-quiz");
 const highscore1 = document.querySelector("#highscore");
 const message = document.querySelector("#message");
-const scoreboard = document.querySelector("#scoreboard");
 
 //containers
 var timeEl = document.querySelector(".time");
@@ -28,6 +27,8 @@ var homepage = document.querySelector("#back-button");
 var saveButton = document.querySelector("#save-button");
 var backHome = document.querySelector("#back-homepage");
 var add = document.querySelector("#add-player");
+var allScores = document.querySelector(".score-board");
+const scoreboard = document.querySelector("#scoreboard");
 
 //question & answer choices
 var questionTitle = document.querySelector("#question-title");
@@ -203,8 +204,14 @@ function enterUserRecord() {
 }
 
 var scoreBoardList = [];
+let hasSaved = false;
 
 function saveAllPlayers() {
+    if (hasSaved) {
+        score.textContent = `You've already saved once!`;
+        return;
+    }
+
     // Retrieve the item "allPlayers" from localStorage
     let storedPlayers = localStorage.getItem("allPlayers");
 
@@ -212,9 +219,11 @@ function saveAllPlayers() {
     if (storedPlayers !== null) {
         // If there is data, parse it from JSON format into a JavaScript array
         scoreBoardList = JSON.parse(storedPlayers);
+        hasSaved = true;
     } else {
         // If there is no data, initialize scoreBoardList as an empty array
         scoreBoardList = [];
+        hasSaved = false;
     }
 
     // Retrieve the latest player record from localStorage
@@ -227,7 +236,37 @@ function saveAllPlayers() {
 
     // Save the updated list back to localStorage
     localStorage.setItem("allPlayers", JSON.stringify(scoreBoardList));
+    hasSaved = true;
 }
+
+function display10RecentPlayers() {
+    // homepage.style.display = "none";
+    highscore1.setAttribute("class", "hidden");
+    startContainer.setAttribute("class", "hidden");
+    startQuiz.setAttribute("class", "hidden");
+    footer.setAttribute("class", "hidden");
+
+    let allPlayers = JSON.parse(localStorage.getItem("allPlayers"));
+
+     // Initialize an empty string to hold the player information
+    let players = '';
+
+    if (allPlayers.length > 10) {
+        let last10Players = allPlayers.slice(-10);
+        console.log(last10Players);
+        
+        // Loop through each of the last 10 players and append their info to the players string
+        for (let i = 0; i < last10Players.length; i++) {
+            players += `${last10Players[i].username} : ${last10Players[i].highscore} <br>`;
+        }
+        
+        // Set the content for the scores display
+        allScores.innerHTML = `<b>THE 10 MOST RECENT PLAYERS </b> <br>` + players;
+        console.log(allScores);
+    }
+
+}
+
  
 // Highscore board
 function showHighscores() {
@@ -254,7 +293,7 @@ choiceDBtn.addEventListener("click", selectAnswerD);
 homepage.addEventListener("click", goHome);
 backHome.addEventListener("click", goHome);
 highscoreButton.addEventListener("click", showHighscores);
-scoreboard.addEventListener("click", displayPlayers)
+scoreboard.addEventListener("click", display10RecentPlayers)
 saveButton.addEventListener("click", enterUserRecord);
 saveButton.addEventListener("click", saveAllPlayers);
 
