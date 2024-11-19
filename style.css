@@ -81,6 +81,10 @@ p {
     display: grid;
 }
 
+#start-page-container {
+    margin-bottom: 50px;
+}
+
 .scoreboard-container, .start-quiz-container {
     margin: 0;
     position: relative;
