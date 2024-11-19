@@ -19,3 +19,11 @@ Multiple Choice Questions: The quiz consists of five questions, each with a set 
 - CSS: Styling for the quiz interface.
 - JavaScript: Logic for the timer, score calculation, question management, and interaction.
 - Local Storage: (Optional) Save high scores or quiz data locally for persistence.
+
+
+# How to Play
+1. The quiz will present the first question immediately upon page load.
+2. You have 20 seconds to answer each question. The timer will decrease as you answer.
+3. For each question, select one of the multiple-choice options. If you select the correct answer, you'll earn 2 points.
+4. Once you’ve answered all 5 questions, your total score will be displayed.
+5. If the timer runs out before you finish, the quiz will automatically end, and your score will be shown.
