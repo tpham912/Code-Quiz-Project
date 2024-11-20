@@ -48,7 +48,9 @@ var highscores = [];
 const footer = document.querySelector(".footer");
 
 var currentQuestion = 0;
+
 var secondsLeft = 20;
+var timerInterval;
 
 var quizQuestions = [
     { 
@@ -64,7 +66,7 @@ var quizQuestions = [
 
     },
     { 
-        question: "Q2: The Arrector Pili muscles are responsible for what phenomenon??", 
+        question: "Q2: The Arrector Pili muscles are responsible for what phenomenon?", 
         answer: { 
             choiceA: "A - Cardiac arrest",
             choiceB: "B - Goose bumps",
@@ -110,38 +112,43 @@ var quizQuestions = [
     }
 ];
 
-function start (){ //start button 
+function start () { //start button 
     startContainer.setAttribute("class", "hidden");
     scoreboard.setAttribute("class", "hidden");
     questionContainer.classList.remove("hidden");
     startQuiz.setAttribute("class", "hidden");
     highscore1.setAttribute("class", "hidden");
     footer.setAttribute("class", "hidden");
-    startTimer();
     showQuestion();
 }
 
-function startTimer(){ //start timer
-    var timerInterval = setInterval(function() {
+function startTimer() { // Start timer
+    timerInterval = setInterval(function() {
         secondsLeft--;
         timeEl.textContent = secondsLeft;
 
-        if(secondsLeft === 0) {
-            clearInterval(timerInterval);
-            gameOver();
+        for (let i = 0; i < quizQuestions.length; i++) {
+            if (secondsLeft == 0 && i < quizQuestions.length) {
+                clearInterval(timerInterval);
+                showResults();
+            }
         }
-   
     }, 1000);
 }
 
 function showQuestion(){
     var question = quizQuestions[currentQuestion];
     questionTitle.textContent = question.question;
-    console.log(question);
+
     choiceABtn.textContent = question.answer.choiceA;
     choiceBBtn.textContent = question.answer.choiceB;
     choiceCBtn.textContent = question.answer.choiceC;
     choiceDBtn.textContent = question.answer.choiceD;
+    
+    secondsLeft = 20;
+    timeEl.textContent = secondsLeft;
+    clearInterval(timerInterval);
+    startTimer();
 }
 
 function selectAnswer(choice){
@@ -171,8 +178,10 @@ function selectAnswerD(){
 }
 
 function showResults() { //show results
+    clearInterval(timerInterval);
     resultsContainer.classList.remove("hidden");
     questionContainer.setAttribute("class", "hidden");
+
     var correctAnswers = 0;
     for (var i = 0; i < quizQuestions.length; i++) {
         if (quizQuestions[i].userSelection === quizQuestions[i].correctAnswer) {
@@ -253,21 +262,17 @@ function display10RecentPlayers() {
 
     if (allPlayers.length > 10) {
         let last10Players = allPlayers.slice(-10);
-        console.log(last10Players);
         
         // Loop through each of the last 10 players and append their info to the players string
         for (let i = 0; i < last10Players.length; i++) {
-            players += `${last10Players[i].username} : ${last10Players[i].highscore} <br>`;
+            players += `${last10Players[i].username} : ${last10Players[i].highscore}% <br>`;
         }
         
         // Set the content for the scores display
         allScores.innerHTML = `<b>THE 10 MOST RECENT PLAYERS </b> <br>` + players;
-        console.log(allScores);
-    }
-
+    } 
 }
 
- 
 // Highscore board
 function showHighscores() {
     startContainer.setAttribute("class", "hidden");
