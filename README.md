@@ -27,3 +27,6 @@ Multiple Choice Questions: The quiz consists of five questions, each with a set 
 3. For each question, select one of the multiple-choice options. If you select the correct answer, you'll earn 2 points.
 4. Once you’ve answered all 5 questions, your total score will be displayed.
 5. If the timer runs out before you finish, the quiz will automatically end, and your score will be shown.
+
+# Deployed Linked 
+https://tpham912.github.io/Code-Quiz-Project/
