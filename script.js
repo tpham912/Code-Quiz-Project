@@ -260,6 +260,13 @@ function display10RecentPlayers() {
      // Initialize an empty string to hold the player information
     let players = '';
 
+    if (allPlayers.length < 10) {
+        for (let i = 0; i < last10Players.length; i++) {
+            players += `${last10Players[i].username} : ${last10Players[i].highscore}% <br>`;
+            allScores.innerHTML = "MOST RECENT PLAYERS";
+        }
+    }
+
     if (allPlayers.length > 10) {
         let last10Players = allPlayers.slice(-10);
         
