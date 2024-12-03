@@ -287,7 +287,7 @@ function showHighscores() {
 }
 
 function goHome() {
-    window.location.href = "index.html";
+    window.location.href = "https://tpham912.github.io/Code-Quiz-Project/";
 }
 
 startButton.addEventListener("click", start);
