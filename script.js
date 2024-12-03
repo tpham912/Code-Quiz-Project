@@ -287,7 +287,7 @@ function showHighscores() {
 }
 
 function goHome() {
-    window.location.href = "file:///Users/tinapham/Desktop/bootcamp%20project/Code-Quiz-Project/index.html";
+    window.location.href = "index.html";
 }
 
 startButton.addEventListener("click", start);
